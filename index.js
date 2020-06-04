@@ -203,9 +203,10 @@ export class ImageExtend {
      */
     insertImg() {
         const self = QuillWatch.active
-        self.quill.insertEmbed(QuillWatch.active.cursorIndex, 'image', self.imgURL)
+        let length = (self.quill.getSelection() || {}).index || self.quill.getLength()
+        self.quill.insertEmbed(length, 'image', self.imgURL)
         self.quill.update()
-        self.quill.setSelection(self.cursorIndex+1);
+        self.quill.setSelection(length+1);
     }
 
     /**
